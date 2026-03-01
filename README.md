@@ -52,6 +52,8 @@ rm -rf /home/frappe/frappe-bench/apps/dokos_lmdm_edi
 bench get-app dokos_lmdm_edi https://github.com/SebastienKaiser/dokos_lmdm_edi.git --skip-assets
 
 # Ajouter l'app au fichier apps.txt (nécessaire après --skip-assets)
+# IMPORTANT: Ajouter une nouvelle ligne d'abord pour éviter la concaténation
+sed -i '$a\' /home/frappe/frappe-bench/sites/apps.txt
 echo "dokos_lmdm_edi" >> /home/frappe/frappe-bench/sites/apps.txt
 
 # Vérifier que l'app est bien listée
