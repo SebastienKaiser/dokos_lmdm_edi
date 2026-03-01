@@ -54,18 +54,14 @@ bench get-app dokos_lmdm_edi https://github.com/SebastienKaiser/dokos_lmdm_edi.g
 # Installer le package Python manuellement (nécessaire après --skip-assets)
 pip install -e /home/frappe/frappe-bench/apps/dokos_lmdm_edi
 
-# Ajouter l'app au fichier apps.txt
-sed -i '$a\' /home/frappe/frappe-bench/sites/apps.txt
-echo "dokos_lmdm_edi" >> /home/frappe/frappe-bench/sites/apps.txt
-
-# Vérifier que l'app est bien listée maintenant
-bench list-apps
-
-# Installer sur le site
+# Installer l'app sur le site (l'ajoute automatiquement à la liste des apps)
 bench --site frontend install-app dokos_lmdm_edi
 
 # Migrer la base de données
 bench --site frontend migrate
+
+# Vérifier que l'app est bien installée
+bench list-apps
 
 # Sortir du conteneur
 exit
@@ -239,9 +235,9 @@ bench --site dev.local run-tests --doctype "EDI Settings"
 
 ## 🐛 Dépannage
 
-### L'app n'apparaît pas dans bench list-apps après --skip-assets
+### L'app n'apparaît pas dans bench list-apps
 
-Si `bench list-apps` ne montre pas l'app même si le dossier existe :
+**Important :** `bench list-apps` ne montre que les apps installées sur au moins un site, pas toutes les apps disponibles.
 
 ```bash
 # Vérifier que le dossier existe
@@ -253,18 +249,11 @@ pip list | grep dokos
 # Si absent, installer manuellement
 pip install -e /home/frappe/frappe-bench/apps/dokos_lmdm_edi
 
-# Puis vérifier à nouveau
+# Installer sur un site pour qu'elle apparaisse dans bench list-apps
+bench --site frontend install-app dokos_lmdm_edi
+
+# Maintenant elle devrait apparaître
 bench list-apps
-```
-
-### L'app n'apparaît pas dans la liste
-
-```bash
-# Vérifier que l'app est bien installée
-bench --site dev.local list-apps
-
-# Si absente, installer
-bench --site dev.local install-app dokos_lmdm_edi
 ```
 
 ### Le workspace EDI n'apparaît pas
