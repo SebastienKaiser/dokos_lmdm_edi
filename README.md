@@ -42,25 +42,32 @@ docker exec -it dodock-backend-1 bash
 # Lister les apps
 bench list-apps
 
+# Lister les sites // A priori frontend uniquement
+bench list-sites
+
 # Supprimer l'app EN CAS DE DOUBLON :
 rm -rf /home/frappe/frappe-bench/apps/dokos_lmdm_edi
 
-# Récupérer l'app depuis GitHub
-bench get-app dokos_lmdm_edi https://github.com/SebastienKaiser/dokos-lmdm-edi.git
+# Récupérer l'app depuis GitHub (AVEC --skip-assets car pas d'assets front-end)
+bench get-app dokos_lmdm_edi https://github.com/SebastienKaiser/dokos_lmdm_edi.git --skip-assets
 
+# Ajouter l'app au fichier apps.txt (nécessaire après --skip-assets)
+echo "dokos_lmdm_edi" >> /home/frappe/frappe-bench/sites/apps.txt
 
+# Vérifier que l'app est bien listée
+bench list-apps
 
 # Installer sur le site
-bench --site <site_name> install-app dokos_lmdm_edi
+bench --site frontend install-app dokos_lmdm_edi
 
 # Migrer la base de données
-bench --site <site_name> migrate
+bench --site frontend migrate
 
 # Sortir du conteneur
 exit
 
 # Redémarrer le conteneur
-docker restart <container_name>
+docker restart dodock-backend-1
 ```
 
 **Note :** 
