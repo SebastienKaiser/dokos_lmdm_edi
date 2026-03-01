@@ -36,21 +36,38 @@ dokos_lmdm_edi/
 ### 2. Installer sur le serveur Dokos
 
 ```bash
-# Sur le serveur Dokos
-cd /path/to/frappe-bench
+# Accéder au conteneur SI DOCKER
+docker exec -it dodock-backend-1 bash
+
+# Lister les apps
+bench list-apps
+
+# Supprimer l'app EN CAS DE DOUBLON :
+rm -rf /home/frappe/frappe-bench/apps/dokos_lmdm_edi
 
 # Récupérer l'app depuis GitHub
-bench get-app dokos_lmdm_edi https://github.com/YOUR_ORG/dokos-lmdm-edi.git
+bench get-app dokos_lmdm_edi https://github.com/SebastienKaiser/dokos-lmdm-edi.git
 
-# Installer sur le site dev
-bench --site dev.local install-app dokos_lmdm_edi
+
+
+# Installer sur le site
+bench --site <site_name> install-app dokos_lmdm_edi
 
 # Migrer la base de données
-bench --site dev.local migrate
+bench --site <site_name> migrate
 
-# Redémarrer
-bench restart
+# Sortir du conteneur
+exit
+
+# Redémarrer le conteneur
+docker restart <container_name>
 ```
+
+**Note :** 
+- Remplacer `<container_name>` par le nom de votre conteneur Dokos (ex: `dodock-backend-1`)
+- Remplacer `<site_name>` par le nom de votre site (ex: `dev.local`)
+- Pour lister les conteneurs : `docker ps`
+- Pour lister les sites : `docker exec -it <container_name> bench --site all list`
 
 ### 3. Vérification
 
