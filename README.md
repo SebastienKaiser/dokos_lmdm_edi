@@ -54,7 +54,11 @@ bench get-app dokos_lmdm_edi https://github.com/SebastienKaiser/dokos_lmdm_edi.g
 # Installer le package Python manuellement (nécessaire après --skip-assets)
 pip install -e /home/frappe/frappe-bench/apps/dokos_lmdm_edi
 
-# Installer l'app sur le site (l'ajoute automatiquement à la liste des apps)
+# Ajouter l'app à apps.txt (nécessaire avec --skip-assets)
+sed -i '$a\' /home/frappe/frappe-bench/sites/apps.txt
+echo "dokos_lmdm_edi" >> /home/frappe/frappe-bench/sites/apps.txt
+
+# Installer l'app sur le site
 bench --site frontend install-app dokos_lmdm_edi
 
 # Migrer la base de données
@@ -78,9 +82,24 @@ docker restart dodock-backend-1
 
 ### 3. Vérification
 
-1. **Menu EDI** : Vérifier que le lien "EDI" apparaît dans le sidebar
-2. **EDI Settings** : Accéder à Administration > EDI Settings
-3. **Workspace** : Cliquer sur EDI pour voir le workspace avec sections
+Après le redémarrage du conteneur, vérifier dans l'interface Dokos :
+
+1. **Rechercher "EDI"** : Dans la barre de recherche en haut de l'interface
+2. **EDI Settings** : Accéder à Administration > EDI Settings (ou rechercher "EDI Settings")
+3. **Workspace EDI** : Vérifier si un workspace "EDI" apparaît dans le menu latéral
+4. **Tester l'API** : Depuis la console navigateur (F12) :
+   ```javascript
+   frappe.call({
+       method: "dokos_lmdm_edi.api.get_status",
+       callback: r => console.log(r.message)
+   });
+   ```
+
+**Note :** Si le workspace n'apparaît pas, essayer de forcer le rebuild :
+```bash
+docker exec -it dodock-backend-1 bench --site frontend rebuild-workspace
+docker restart dodock-backend-1
+```
 
 ## ⚙️ Configuration
 
@@ -234,6 +253,23 @@ bench --site dev.local run-tests --doctype "EDI Settings"
 - [ ] Retry logic pour échecs
 
 ## 🐛 Dépannage
+
+### Erreur "App not in apps.txt" lors de l'installation
+
+Si vous obtenez cette erreur lors de `bench --site frontend install-app` :
+
+```bash
+# Vérifier apps.txt
+cat /home/frappe/frappe-bench/sites/apps.txt
+
+# Si dokos_lmdm_edi n'y est pas, l'ajouter
+sed -i '$a\' /home/frappe/frappe-bench/sites/apps.txt
+echo "dokos_lmdm_edi" >> /home/frappe/frappe-bench/sites/apps.txt
+
+# Réessayer l'installation
+bench --site frontend install-app dokos_lmdm_edi
+bench --site frontend migrate
+```
 
 ### L'app n'apparaît pas dans bench list-apps
 
