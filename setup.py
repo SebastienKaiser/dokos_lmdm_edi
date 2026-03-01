@@ -16,7 +16,7 @@ setup(
     zip_safe=False,
     include_package_data=True,
     install_requires=[
-        "frappe",
+        # frappe is already installed in the bench environment
     ],
     python_requires=">=3.8",
 )
