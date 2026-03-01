@@ -1,0 +1,14 @@
+{
+ "category": "Modules",
+ "creation": "2026-03-01 10:00:00.000000",
+ "description": "EDI Integration and data synchronization",
+ "docstatus": 0,
+ "doctype": "Module Def",
+ "idx": 0,
+ "module_name": "Dokos LMDM EDI",
+ "modified": "2026-03-01 10:00:00.000000",
+ "modified_by": "Administrator",
+ "name": "Dokos LMDM EDI",
+ "owner": "Administrator",
+ "app_name": "dokos_lmdm_edi"
+}

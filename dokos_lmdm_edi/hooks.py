@@ -101,19 +101,17 @@ required_apps = []
 # Workspace
 # ---------
 
-# Adds custom sections to workspace
-# workspace_config = [
-# 	{
-# 		"label": _("EDI"),
-# 		"items": [
-# 			{
-# 				"type": "link",
-# 				"label": "EDI Sync Log",
-# 				"name": "EDI Sync Log"
-# 			}
-# 		]
-# 	}
-# ]
+# Custom workspaces
+has_website_permission = {}
+
+# On desk page trigger
+on_session_creation = []
+
+# Export to users
+export_python_type_annotations = True
+
+# Workspaces (for Desk sidebar navigation)
+# Automatically loaded from workspace/ directory
 
 # User Data Protection
 # --------------------
