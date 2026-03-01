@@ -95,11 +95,12 @@ Après le redémarrage du conteneur, vérifier dans l'interface Dokos :
    });
    ```
 
-**Note :** Si le workspace n'apparaît pas, essayer de forcer le rebuild :
+**Note :** Si le workspace n'apparaît pas, essayer de vider le cache :
 ```bash
-docker exec -it dodock-backend-1 bench --site frontend rebuild-workspace
+docker exec -it dodock-backend-1 bench --site frontend clear-cache
 docker restart dodock-backend-1
 ```
+Puis dans le navigateur, vider aussi le cache (Ctrl+F5).
 
 ## ⚙️ Configuration
 
@@ -295,11 +296,13 @@ bench list-apps
 ### Le workspace EDI n'apparaît pas
 
 ```bash
-# Forcer la reconstruction du workspace
-bench --site dev.local rebuild-workspace
+# Vider le cache
+docker exec -it dodock-backend-1 bench --site frontend clear-cache
 
-# Ou migrer à nouveau
-bench --site dev.local migrate
+# Redémarrer
+docker restart dodock-backend-1
+
+# Dans le navigateur, vider aussi le cache (Ctrl+F5)
 ```
 
 ### Erreur de permissions
