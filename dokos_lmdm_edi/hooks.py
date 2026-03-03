@@ -1,56 +1,135 @@
-"""
-Frappe hooks for EDI Integration App
-"""
-
 app_name = "dokos_lmdm_edi"
-app_title = "EDI Integration (LMDM)"
-app_publisher = "Your Company"
-app_description = "EDI data synchronization and integration with external systems"
-app_icon = "octicon octicon-sync"
-app_color = "#FF6B6B"
-app_email = "your@email.com"
-app_license = "MIT"
-app_version = "1.0.0"
-
-# Requires
-required_apps = []
+app_title = "Dokos LMDM EDI"
+app_publisher = "SKwireL"
+app_description = "EDI Integration for Dokos LMDM"
+app_email = "kaiser.sebastien@gmail.com"
+app_license = "mit"
+# required_apps = []
 
 # Includes in <head>
 # ------------------
 
 # include js, css files in header of desk.html
-app_include_css = []
-app_include_js = []
+# app_include_css = "/assets/dokos_lmdm_edi/css/dokos_lmdm_edi.css"
+# app_include_js = "/assets/dokos_lmdm_edi/js/dokos_lmdm_edi.js"
 
 # include js, css files in header of web template
-web_include_css = []
-web_include_js = []
+# web_include_css = "/assets/dokos_lmdm_edi/css/dokos_lmdm_edi.css"
+# web_include_js = "/assets/dokos_lmdm_edi/js/dokos_lmdm_edi.js"
 
-# include custom scss in every page
-# app_include_scss = "edi/public/scss/index.scss"
+# include custom scss in every website theme (without file extension ".scss")
+# website_theme_scss = "dokos_lmdm_edi/public/scss/website"
 
-# Includes in <body>
-# ---------------------
+# include js, css files in header of web form
+# webform_include_js = {"doctype": "public/js/doctype.js"}
+# webform_include_css = {"doctype": "public/css/doctype.css"}
 
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
+# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+# doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
+# doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
-# include js in form
-# form_js = {"doctype" : "public/js/form.js"}
+# Svg Icons
+# ------------------
+# include app icons in desk
+# app_include_icons = "dokos_lmdm_edi/public/icons.svg"
 
-# provide settings in customize form
-# customize_form = {"doctype": "settings", "fieldname": "custom_settings", "template": "form"}
-
-# ET Events
+# Home Pages
 # ----------
 
-# Trigger on document events
+# application home page (will override Website Settings)
+# home_page = "login"
+
+# website user home page (by Role)
+# role_home_page = {
+# 	"Role": "home_page"
+# }
+
+# Generators
+# ----------
+
+# automatically create page for each record of this doctype
+# website_generators = ["Web Page"]
+
+# automatically load and sync documents of this doctype from downstream apps
+# importable_doctypes = [doctype_1]
+
+# Jinja
+# ----------
+
+# add methods and filters to jinja environment
+# jinja = {
+# 	"methods": "dokos_lmdm_edi.utils.jinja_methods",
+# 	"filters": "dokos_lmdm_edi.utils.jinja_filters"
+# }
+
+# Installation
+# ------------
+
+# before_install = "dokos_lmdm_edi.install.before_install"
+# after_install = "dokos_lmdm_edi.install.after_install"
+
+# Uninstallation
+# ------------
+
+# before_uninstall = "dokos_lmdm_edi.uninstall.before_uninstall"
+# after_uninstall = "dokos_lmdm_edi.uninstall.after_uninstall"
+
+# Integration Setup
+# ------------------
+# To set up dependencies/integrations with other apps
+# Name of the app being installed is passed as an argument
+
+# before_app_install = "dokos_lmdm_edi.utils.before_app_install"
+# after_app_install = "dokos_lmdm_edi.utils.after_app_install"
+
+# Integration Cleanup
+# -------------------
+# To clean up dependencies/integrations with other apps
+# Name of the app being uninstalled is passed as an argument
+
+# before_app_uninstall = "dokos_lmdm_edi.utils.before_app_uninstall"
+# after_app_uninstall = "dokos_lmdm_edi.utils.after_app_uninstall"
+
+# Desk Notifications
+# ------------------
+# See frappe.core.notifications.get_notification_config
+
+# notification_config = "dokos_lmdm_edi.notifications.get_notification_config"
+
+# Permissions
+# -----------
+# Permissions evaluated in scripted ways
+
+# permission_query_conditions = {
+# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
+# }
+#
+# has_permission = {
+# 	"Event": "frappe.desk.doctype.event.event.has_permission",
+# }
+
+# DocType Class
+# ---------------
+# Override standard doctype classes
+
+# override_doctype_class = {
+# 	"ToDo": "custom_app.overrides.CustomToDo"
+# }
+
+# Document Events
+# ---------------
+# Hook on document methods and events
+
 # doc_events = {
 # 	"*": {
-# 		"on_update": "edi.event_handlers.on_update"
+# 		"on_update": "method",
+# 		"on_cancel": "method",
+# 		"on_trash": "method"
 # 	}
 # }
 
@@ -58,60 +137,59 @@ web_include_js = []
 # ---------------
 
 # scheduler_events = {
-# 	"cron": {
-# 		"0/15 * * * *": [
-# 			"edi.tasks.sync_edi_data"
-# 		]
-# 	},
+# 	"all": [
+# 		"dokos_lmdm_edi.tasks.all"
+# 	],
 # 	"daily": [
-# 		"edi.tasks.daily_sync"
-# 	]
+# 		"dokos_lmdm_edi.tasks.daily"
+# 	],
+# 	"hourly": [
+# 		"dokos_lmdm_edi.tasks.hourly"
+# 	],
+# 	"weekly": [
+# 		"dokos_lmdm_edi.tasks.weekly"
+# 	],
+# 	"monthly": [
+# 		"dokos_lmdm_edi.tasks.monthly"
+# 	],
 # }
-
-# Fixtures (auto-install)
-# ----------
-
-# fixtures = ["Custom Field"]
-
-# Migrate
-# -------
-
-# migrate_from_version changes
-# migrate_from_version = "0.0.1"
-
-# before_migrate,after_migrate
 
 # Testing
 # -------
 
-# before_tests deprecated_function in tests/__init__.py
+# before_tests = "dokos_lmdm_edi.install.before_tests"
 
-# Website
-# -------
+# Overriding Methods
+# ------------------------------
+#
+# override_whitelisted_methods = {
+# 	"frappe.desk.doctype.event.event.get_events": "dokos_lmdm_edi.event.get_events"
+# }
+#
+# each overriding function accepts a `data` argument;
+# generated from the base implementation of the doctype dashboard,
+# along with any modifications made in other Frappe apps
+# override_doctype_dashboards = {
+# 	"Task": "dokos_lmdm_edi.task.get_dashboard_data"
+# }
 
-# auto_route = False
+# exempt linked doctypes from being automatically cancelled
+#
+# auto_cancel_exempted_doctypes = ["Auto Repeat"]
 
-# webpage_route_rules = [
-# 	{
-# 		"from_route": "/blog/<blog_post_name>",
-# 		"to_route": "Blog Post/<blog_post_name>"
-# 	}
-# ]
+# Ignore links to specified DocTypes when deleting documents
+# -----------------------------------------------------------
 
-# Workspace
-# ---------
+# ignore_links_on_delete = ["Communication", "ToDo"]
 
-# Custom workspaces
-has_website_permission = {}
-
-# On desk page trigger
-on_session_creation = []
-
-# Export to users
-export_python_type_annotations = True
-
-# Workspaces (for Desk sidebar navigation)
-# Automatically loaded from workspace/ directory
+# Request Events
+# ----------------
+# before_request = ["dokos_lmdm_edi.utils.before_request"]
+# after_request = ["dokos_lmdm_edi.utils.after_request"]
+# Job Events
+# ----------
+# before_job = ["dokos_lmdm_edi.utils.before_job"]
+# after_job = ["dokos_lmdm_edi.utils.after_job"]
 
 # User Data Protection
 # --------------------
@@ -126,21 +204,28 @@ export_python_type_annotations = True
 # 	{
 # 		"doctype": "{doctype_2}",
 # 		"filter_by": "{filter_by}",
-# 		"redact_fields": ["{field_1}", "{field_2}"],
 # 		"partial": 1,
 # 	},
+# 	{
+# 		"doctype": "{doctype_3}",
+# 		"strict": False,
+# 	},
+# 	{
+# 		"doctype": "{doctype_4}"
+# 	}
 # ]
 
 # Authentication and authorization
 # --------------------------------
 
 # auth_hooks = [
-# 	"edi.auth.validate"
+# 	"dokos_lmdm_edi.auth.validate"
 # ]
 
-# Translation
-# -----------
+# Automatically update python controller files with type annotations for this app.
+# export_python_type_annotations = True
 
-# After translation, the app/locale folder should have a list of all
-# pages, doctype, reports etc. for which a translation(_) function was called.
-# OR use babel with edi/public/js as input
+# default_log_clearing_doctypes = {
+# 	"Logging DocType Name": 30  # days to retain logs
+# }
+
