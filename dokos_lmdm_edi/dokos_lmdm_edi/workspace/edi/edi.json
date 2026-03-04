@@ -12,6 +12,9 @@
  "shortcuts": [
   {
    "doctype": "Workspace Shortcut",
+   "parent": "EDI",
+   "parentfield": "shortcuts",
+   "parenttype": "Workspace",
    "type": "DocType",
    "label": "EDI Settings",
    "doc_view": "List",
@@ -21,11 +24,17 @@
  "links": [
   {
    "doctype": "Workspace Link",
+   "parent": "EDI",
+   "parentfield": "links",
+   "parenttype": "Workspace",
    "type": "Card Break",
    "label": "Configuration"
   },
   {
    "doctype": "Workspace Link",
+   "parent": "EDI",
+   "parentfield": "links",
+   "parenttype": "Workspace",
    "type": "Link",
    "label": "EDI Settings",
    "icon": "setting",
@@ -35,11 +44,17 @@
   },
   {
    "doctype": "Workspace Link",
+   "parent": "EDI",
+   "parentfield": "links",
+   "parenttype": "Workspace",
    "type": "Card Break",
    "label": "Transactions"
   },
   {
    "doctype": "Workspace Link",
+   "parent": "EDI",
+   "parentfield": "links",
+   "parenttype": "Workspace",
    "type": "Link",
    "label": "EDI Message",
    "icon": "mail",
