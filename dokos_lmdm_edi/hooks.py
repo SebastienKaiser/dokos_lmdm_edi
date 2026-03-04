@@ -6,20 +6,6 @@ app_email = "kaiser.sebastien@gmail.com"
 app_license = "mit"
 # required_apps = []
 
-# Fixtures
-# --------
-# Sync custom DocTypes and configurations
-fixtures = [
-    {
-        "dt": "Module Def",
-        "filters": [["name", "in", ["Dokos LMDM EDI"]]]
-    },
-    {
-        "dt": "Workspace",
-        "filters": [["name", "in", ["EDI"]]]
-    }
-]
-
 # Includes in <head>
 # ------------------
 
