@@ -11,6 +11,10 @@ app_license = "mit"
 # Sync custom DocTypes and configurations
 fixtures = [
     {
+        "dt": "Module Def",
+        "filters": [["name", "in", ["Dokos LMDM EDI"]]]
+    },
+    {
         "dt": "Workspace",
         "filters": [["name", "in", ["EDI"]]]
     }
