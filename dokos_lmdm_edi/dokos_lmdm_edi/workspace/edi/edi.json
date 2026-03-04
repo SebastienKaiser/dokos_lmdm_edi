@@ -1,0 +1,50 @@
+{
+ "name": "EDI",
+ "title": "EDI",
+ "icon": "transfer",
+ "module": "Dokos LMDM EDI",
+ "color": "#3498db",
+ "is_standard": 0,
+ "category": "Modules",
+ "public": 1,
+ "cards": [
+  {
+   "label": "Configuration"
+  }
+ ],
+ "shortcuts": [
+  {
+   "type": "DocType",
+   "label": "EDI Settings",
+   "doc_view": "List",
+   "url": "/app/edi-settings"
+  }
+ ],
+ "links": [
+  {
+   "type": "Card Break",
+   "label": "Configuration"
+  },
+  {
+   "type": "Link",
+   "label": "EDI Settings",
+   "icon": "setting",
+   "name": "EDI Settings",
+   "link_to": "EDI Settings",
+   "link_type": "DocType"
+  },
+  {
+   "type": "Card Break",
+   "label": "Transactions"
+  },
+  {
+   "type": "Link",
+   "label": "EDI Message",
+   "icon": "mail",
+   "name": "EDI Message",
+   "link_to": "EDI Message",
+   "link_type": "DocType",
+   "description": "Messages EDI entrants/sortants"
+  }
+ ]
+}
