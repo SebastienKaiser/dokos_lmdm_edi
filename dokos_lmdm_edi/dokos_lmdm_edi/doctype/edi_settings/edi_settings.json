@@ -1,0 +1,102 @@
+{
+ "actions": [],
+ "creation": "2026-03-04 09:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "babelway_section",
+  "babelway_base_api",
+  "babelway_api_key",
+  "babelway_test_connection",
+  "section_break_advanced",
+  "enable_logging",
+  "log_level",
+  "retry_count",
+  "timeout"
+ ],
+ "fields": [
+  {
+   "fieldname": "babelway_section",
+   "fieldtype": "Section Break",
+   "label": "Babelway Configuration"
+  },
+  {
+   "fieldname": "babelway_base_api",
+   "fieldtype": "Data",
+   "label": "Babelway Base API URL",
+   "description": "Base URL for Babelway Cloud API (e.g., https://api.babelway.com/v1)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "babelway_api_key",
+   "fieldtype": "Password",
+   "label": "Babelway API Key",
+   "description": "API Key for Babelway authentication"
+  },
+  {
+   "fieldname": "babelway_test_connection",
+   "fieldtype": "Button",
+   "label": "Test Connection",
+   "description": "Click to test the connection to Babelway API"
+  },
+  {
+   "fieldname": "section_break_advanced",
+   "fieldtype": "Section Break",
+   "label": "Advanced Settings",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "enable_logging",
+   "fieldtype": "Check",
+   "label": "Enable Detailed Logging",
+   "default": "1",
+   "description": "Enable detailed logging for EDI operations"
+  },
+  {
+   "fieldname": "log_level",
+   "fieldtype": "Select",
+   "label": "Log Level",
+   "options": "DEBUG\nINFO\nWARNING\nERROR",
+   "default": "INFO",
+   "depends_on": "enable_logging"
+  },
+  {
+   "fieldname": "retry_count",
+   "fieldtype": "Int",
+   "label": "API Retry Count",
+   "default": "3",
+   "description": "Number of retries for failed API calls"
+  },
+  {
+   "fieldname": "timeout",
+   "fieldtype": "Int",
+   "label": "API Timeout (seconds)",
+   "default": "30",
+   "description": "Timeout for API requests in seconds"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-03-04 09:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Dokos LMDM EDI",
+ "name": "EDI Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

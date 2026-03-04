@@ -1,0 +1,1 @@
+# EDI Settings DocType
